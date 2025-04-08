@@ -2,7 +2,7 @@
 
 ## Authors
 
-Hanxi Guo
+Hanxi Guo, Nick Cirillo
 
 ## Problem Statement
 
