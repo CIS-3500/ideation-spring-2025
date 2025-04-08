@@ -2,7 +2,7 @@
 
 ## Authors
 
-Junie Guo
+Junie Guo and Sean Donovan
 
 ## Problem Statement
 
