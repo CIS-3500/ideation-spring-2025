@@ -40,7 +40,7 @@ This Chrome Extension enables users to quickly grab customer reviews from Amazon
 - 📈 As a **marketer**, I want to gather both pros and cons from reviews to better position a product.  
 - 👨‍💻 As a **developer**, I want the extension to skip ads and sponsored content to get only authentic customer reviews.
 - 🧾 As a **content creator**, I want to extract real user quotes from Amazon reviews so I can include authentic feedback in my videos and blog posts.
-- 🧠 As an **AI user**, I want to quickly feed reviews into ChatGPT with product context so the responses are more relevant and insightful.
+- 🧠 As a **user wary of fake review**, I want to quickly feed reviews into ChatGPT with product context so the responses are more relevant and insightful with authentic feedback.
 - 🔍 As a **quality assurance tester**, I want to highlight reviews that mention bugs or defects so I can track recurring product issues.
 - 📚 As a **student**, I want to analyze Amazon reviews for academic research on consumer behavior and online feedback trends.
 - 🔧 As a **UX designer**, I want to study user pain points mentioned in reviews so I can design better product experiences.
