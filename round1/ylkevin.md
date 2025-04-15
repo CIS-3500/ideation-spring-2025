@@ -1,12 +1,12 @@
-# Chrome Extension Idea: [Title]
+# Chrome Extension Idea: Prospector
 
 ## Authors
 
-[Include your name(s) here]
+Kevin Yang-Li
 
 ## Problem Statement
 
-[Describe the problem that your Chrome Extension will solve. What are the pain points that users experience? How does your extension address these pain points?]
+Users have spend a lot of time looking for relevant reviews for specific products on Amazon/Ebay. Some reviews have long texts and fluf in them, and current users deciding whether or not to buy the product simply want a concise list of pros and cons of a product.This is where the chrome extension comes in. 
 
 ## Target Audience
 
