@@ -1,4 +1,4 @@
-# Chrome Extension Idea: [Title]
+# Chrome Extension Idea: Study Helper
 
 ## Authors
 
@@ -38,8 +38,7 @@ As a student, I want to customize prompt templates for different subjects so tha
 As a user, I want to pin or favorite certain responses so that I can keep the most helpful insights easily accessible.
 
 ## Notes
+
 Personally haven’t developed an extension or anything similar before, so thought this is a feasible and within scope idea for a first time project that would fit within our time constraints. I think that the biggest challenge would be figuring out asynchronous API calls and also the issue of local storage. 
 
 ## References & Inspiration
-
-_[Include any references or sources that inspired your Chrome Extension idea. This could be articles, existing products, or other resources that informed your concept. Just paste any links you found during research.]_
