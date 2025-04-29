@@ -52,6 +52,21 @@ The user can then copy and paste the prompt into a tool like ChatGPT for quick, 
 3. As a GPT user, I want a prebuilt prompt that summarizes reviews and specs, so I don’t waste time assembling information by hand.  
 4. As a user of Chrome extensions, I want to extract review summaries with one click, so I can avoid browser tab overload.  
 5. As a shopper, I want to know if a recent product version (v3.0) has specific new problems reviewers are mentioning, so I can avoid defective updates.
+6. As a student shopping for tech gear, I want to know what people say about durability so that I don’t waste money on a fragile item.
+7. As a user comparing multiple products, I want to generate a side-by-side GPT prompt that includes prices, pros, and cons so that I can make a quick decision.
+8. As a shopper on a budget, I want to know if the current price is fair based on reviews and product quality so that I don’t overpay.
+9. As someone with specific use cases (e.g., traveling, gaming, studying), I want to prompt GPT to match features with my needs so that I pick the most suitable product.
+10. As a buyer overwhelmed by technical specs, I want a summary of key functional differences extracted from reviews so that I can understand them quickly.
+11. As a frequent Amazon user, I want to save product summaries locally so that I can review them all before checkout.
+12. As a casual user of GPT, I want pre-written prompts that are clean and informative so that I don’t have to figure out what to ask.
+13. As a parent buying electronics for a child, I want GPT to highlight potential risks or frustrations based on other parents’ reviews so that I make a safer purchase.
+14. As a user looking at a brand-new product with few reviews, I want GPT to tell me what risks I’m taking so that I can decide whether to wait.
+15. As a shopper evaluating version upgrades (e.g., v3.0 vs. v2.0), I want GPT to identify what changed and whether it improved so that I make an informed upgrade decision.
+16. As a visually-impaired shopper using screen readers, I want GPT-generated summaries to be short and clearly structured so that I can understand them with assistive tech.
+17. As a researcher studying user sentiment, I want to export review summaries to a CSV file so that I can analyze trends offline.
+18. As a Chrome user, I want the extension to trigger automatically on supported Amazon pages so that I don't have to click anything to extract data.
+19. As a shopper looking for long-term value, I want GPT to highlight red flags in durability or warranty complaints so that I avoid regret.
+20. As a user doing a bulk purchase (e.g., dorm supplies), I want GPT to rank top 3 value buys from my saved list so that I can buy efficiently.
 
 ---
 
