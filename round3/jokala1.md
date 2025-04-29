@@ -1,8 +1,10 @@
 # Chrome Extension Idea: BuyAdvisor — Amazon Product Reviewer & GPT Prompt Builder
 
 ## Authors  
-Ioannis Kalaitzidis (jokala)  
-[Additional team member names + PennKeys]
+- Claire Zhao (clairezz)
+- Ioannis Kalaitzidis (jokala)
+- Maria Ramos ()
+- Chaelsey Park (chaelsey)
 
 ---
 
@@ -75,3 +77,57 @@ Compare the following headphones for value, quality, and suitability for college
 
 Rank them by recommendation strength and give a 1-sentence summary for each.
 ```
+
+## Technical Implementation
+
+### A. Architecture Overview
+
+| Component | Role |
+|-----------|------|
+| **Content Script** | Extracts product metadata, specs, and reviews from the loaded DOM. |
+| **Popup Script** | Displays extracted data and allows the user to copy GPT prompts easily. |
+| **Background Script** | Stores product information across tabs (for multi-product comparison). |
+| **Storage** | Uses `chrome.storage.local` to persist saved product summaries locally. |
+
+---
+
+### B. Key DOM Selectors
+
+| Data | Selector |
+|------|----------|
+| **Title** | `#productTitle` |
+| **Price** | `#priceblock_ourprice` or `#priceblock_dealprice` |
+| **Specs** | `#feature-bullets` |
+| **ASIN** | Extracted from product information section or parsed from URL (`/dp/ASIN`) |
+| **Reviews** | `document.querySelectorAll('[data-hook="review"]')` — extract top review cards |
+
+---
+
+### C. Review Sentiment Extraction (Lightweight, No ML)
+
+- Parse the first 20–50 review titles and bodies.
+- Count the presence of **positive** keywords (e.g., “great”, “love”, “works well”) versus **negative** keywords (e.g., “broke”, “terrible”, “waste”).
+- Cluster and count frequently mentioned nouns and phrases (e.g., “battery life”, “headphones”, “comfort fit”) to identify top positive and negative themes.
+
+---
+
+## Notes
+
+### Limitations
+- Only works on `amazon.com` (no support for international Amazon domains in the MVP).
+- No direct integration with ChatGPT — the user manually copies and pastes prompts.
+- Only analyzes a limited number of reviews per product to remain within GPT context window (e.g., 4,096 tokens).
+
+### Future Enhancements
+- Add a Chrome right-click shortcut: “Generate GPT prompt for this product.”
+- Offer tone customization options for generated prompts (e.g., “convince me to buy,” “roast this product,” “recommend for parents”).
+- Add optional GPT API integration (users input their API key to automate prompt sending).
+
+---
+
+## References & Inspiration
+
+- Amazon’s DOM structure and element naming conventions (reverse-engineered through DevTools).
+- GPT-4 and GPT-3.5 best practices for prompt engineering and summarization tasks.
+- CamelCamelCamel.com for potential future price history integration (scraping optional).
+- Prior CIS-3500 project inspiration: [Penn Course GPT Assistant].
