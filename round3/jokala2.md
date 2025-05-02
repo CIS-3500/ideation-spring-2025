@@ -1,44 +1,100 @@
-✅ Checkbox Course Selection Feature – Purpose & Utility
-🔧 Background
-The current course selection method relies on users highlighting course names on Path@Penn, which can be error-prone:
-    •    If a user accidentally highlights too much or too little text, the extension may not correctly extract the course ID or name.
-    •    Users receive no visual confirmation of their current or past selections, increasing the chance of comparison errors.
-🧠 Solution: Checkbox Interface with History + Validation
-To improve reliability, the Chrome extension implements a checkbox interface that reflects and validates highlighted selections.
-🧩 How It Works
-    1    After Highlighting a Course:
-    ◦    The extension scrapes the course name/ID and stores the corresponding Penn Course Review data.
-    ◦    That course is added to a visual list with a checkbox in a section titled:
-    ▪    ✓ Currently Selected
-    ▪    📁 Previously Selected (History)
-    2    "Currently Selected" Section:
-    ◦    This section shows the courses the user has selected in this session.
-    ◦    The user can manually confirm (check) whether each selection was correct, preventing accidental mis-selection from going unnoticed.
-    ◦    Only checked courses proceed to comparison.
-    3    "History" Section:
-    ◦    This section stores courses selected in prior sessions (cached locally via chrome.storage.local).
-    ◦    Users can:
-    ▪    Re-include prior courses in a new comparison by checking the box.
-    ▪    Reference past data without needing to re-highlight.
-    ▪    Ensure consistency if they're iterating or refining course choices over time.
-🛠️ Technical Utility
-    •    Ensures data integrity by requiring manual user confirmation before a course is used for matching.
-    •    Tracks user preferences and review data without redundancy, improving performance and UX.
-    •    Allows the extension to defer processing until the user verifies the selection, avoiding logic errors tied to real-time highlighting.
-    •    Offers a fallback UI that makes the extension more fault-tolerant against highlight glitches.
-💡 Example Workflow:
-    1    Student highlights CIS 1200 → Extension adds it to "Currently Selected", unchecked.
-    2    Student sees the checkbox, confirms it's the intended class, and checks it.
-    3    Student highlights CIS 1210 → Same flow.
-    4    Student opens the extension later, sees past picks (CIS 1600, CIS 2400) in "Previously Selected".
-    5    Chooses to include CIS 1600 again for a new comparison.
+# Chrome Extension Idea: Penn Course Search ++ — Prompt‑Powered Course Decision Assistant
 
-🧭 Summary of Benefits
-    •    ✔️ Eliminates user error from faulty highlighting
-    •    ✔️ Adds transparency and control over what's being compared
-    •    ✔️ Supports iterative comparison across sessions
-    •    ✔️ Boosts confidence in the extension's selections and analysis
-Would you like help writing the contentScript.js and popup logic to implement this checkbox interface with persistent history?
+## Authors  
+Ioannis Kalaitzidis (jokala)  
+Claire Zhao (clairezz)  
+Maria Ramos ( )  
+Chaelsey Park (chaelsey)
+
+---
+
+## Problem Statement  
+The existing **Penn Course Search Extension** already fetches Penn Course Review (PCR) data for a single course ID, but students still — 
+
+* Manually copy details into ChatGPT to ask: “Is this a good fit?”  
+* Struggle to **compare two similar electives** side‑by‑side.  
+* Risk copy‑paste errors when highlighting course IDs on Path@Penn.  
+
+These gaps force repeated tab‑switching and drain decision‑making time during the hectic registration window.
+
+---
+
+## Target Audience  
+Penn undergraduates and master’s students who:
+
+* Juggle GenEd, major, and minor requirements.  
+* Use Penn Course Review metrics (Difficulty, Workload, Rating) to balance schedules.  
+* Already rely on LLMs for quick advice but find prompt creation tedious.  
+
+---
+
+## Description  
+**Penn Course Search ++** builds on the open‑source extension by adding four tightly‑integrated features that eliminate copy‑paste friction and enable data‑driven course comparisons:
+
+| # | Feature | Goal |
+|---|---------|------|
+| **1** | **Single‑Course GPT Prompt Generator** | One‑click copy of a crafted prompt that includes course stats + user interests. |
+| **2** | **Checkbox Course Selection UI with Persistent History** | Reliable, confirmable way to stage courses for comparison across sessions. |
+| **3** | **Smart Two‑Course Visual Comparison Panel** | Side‑by‑side metrics view (diff, workload, rating, prereqs) in expanded popup. |
+| **4** | **Two‑Course GPT Prompt Builder** | One‑click prompt that asks an LLM to recommend between the two staged courses. |
+
+---
+
+## Selling Points  
+1. **Zero Copy‑Paste to GPT** – Prompts generated and copied automatically.  
+2. **Error‑Proof Selection** – Checkbox validation prevents wrong course IDs.  
+3. **Persistent History** – Reuse courses chosen yesterday without re‑highlighting.  
+4. **Visual Insight First** – Quick table comparison before even invoking GPT.  
+5. **Fully Local & Private** – No user data leaves the browser; PCR API is public.
+
+---
+
+## User Stories  
+
+1. As a sophomore, I want a one‑click GPT prompt for **one course** so I can know if it fits my SSH requirement.  
+2. As a student narrowing electives, I want to **select two courses with checkboxes** so I’m sure the right courses are compared.  
+3. As a time‑crunched registrant, I want a **visual diff table** so I can spot which course has lower workload instantly.  
+4. As a returning user, I want yesterday’s saved courses to appear under **History** so I can continue my research.  
+5. As a GPT user, I want a **comparison prompt** that explains which of two courses suits my stated interests best.  
+6. As an accessibility‑focused user, I want keyboard navigation for checkboxes so I don’t rely on mouse highlighting.  
+7. As a double major, I want prompts to include both my majors so GPT understands my academic context.  
+8. As a freshman, I want the extension to warn me if a course requires prereqs I haven’t taken.  
+9. As a user with limited time, I want toast notifications confirming copies so I know the action succeeded.  
+10. As a PowerGPT user, I want to tweak the tone (“persuade me” vs. “critique it”) before copying the prompt.
+
+---
+
+## Technical Implementation
+
+### A. Architecture Overview
+
+| Component | Role |
+|-----------|------|
+| **Content Script** | Detects course highlights, extracts course IDs. |
+| **Popup React App** | Renders course cards, checkbox lists, comparison panel, prompt buttons. |
+| **Background Script** | Manages persistent course history in `chrome.storage.local`. |
+| **GPT Prompt Module** | Pure JS utility that formats course objects into prompt strings. |
+
+---
+
+### B. Feature Details & User Flow
+
+#### 1. Single‑Course GPT Prompt Generator
+* **Trigger:** “Generate GPT Prompt” button on course card.  
+* **Flow:** Pull PCR data + user profile → build template → `navigator.clipboard.writeText()` → toast “Prompt copied!”  
+* **Prompt Length:** ≤ 150 words to stay under GPT context.
+
+#### 2. Checkbox Course Selection with History
+* **Lists:**  
+  * *Currently Selected* – unchecked by default → user verifies.  
+  * *Previously Selected* – loaded from storage.  
+* **Data Model:**  
+```ts
+interface SavedCourse {
+  id: string; title: string; diff: number; work: number; rating: number;
+  confirmed: boolean; ts: number;
+}
+```
 
 ### Validation  
 - **Buttons:** “Compare” and “Build Prompt” are enabled **only when exactly two courses are confirmed** via checkboxes.
