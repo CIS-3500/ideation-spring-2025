@@ -1,7 +1,7 @@
 # Chrome Extension Idea: Penn Course GPT Assistant
 
 ## Authors
--Ioannis Kalaitzidis, 
+- Ioannis Kalaitzidis, 
 - Claire Zhao,
 - Maria Ramos,
 - Chaelsey Park
